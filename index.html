@@ -15,9 +15,17 @@
         background-color: #0075ff;
       }
 
+      h1 {
+        color: white;
+        margin: 10px auto;
+        width: fit-content;
+      }
+      h1 span {
+        color: gold;
+      }
       .inbox {
         max-width: 500px;
-        margin: 50px auto;
+        margin: 20px auto;
         background: white;
         border-radius: 5px;
         box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
@@ -60,7 +68,10 @@
         cursor: pointer;
       }
     </style>
-
+    <h1>
+      # Select item and hold <span>(Shift Button ⇧)</span> and select another
+      item #
+    </h1>
     <div class="inbox">
       <div class="item">
         <input type="checkbox" id="one" />
