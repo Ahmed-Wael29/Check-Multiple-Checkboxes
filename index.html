@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Hold Shift to Check Multiple Checkboxes"
+    />
+    <title>Hold Shift to Check Multiple Checkboxes</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #0075ff;
+      }
+
+      .inbox {
+        max-width: 500px;
+        margin: 50px auto;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #f1f1f1;
+      }
+
+      .item:last-child {
+        border-bottom: 0;
+      }
+
+      input:checked + label {
+        background-color: #f9f9f9;
+        text-decoration: line-through;
+      }
+      .item:hover label {
+        background-color: #f9f9f9;
+      }
+      input[type="checkbox"] {
+        margin: 20px;
+        cursor: pointer;
+        outline: none;
+      }
+
+      label {
+        margin: 0;
+        padding: 20px;
+        transition: 0.2s;
+        flex: 1;
+        font-family: "helvetica neue";
+        font-size: 20px;
+        font-weight: 200;
+        border-left: 1px solid #d1e2ff;
+        user-select: none;
+        cursor: pointer;
+      }
+    </style>
+
+    <div class="inbox">
+      <div class="item">
+        <input type="checkbox" id="one" />
+        <label for="one">This is an inbox layout.</label>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="two" />
+        <label for="two">Check one item</label>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="three" />
+        <label for="three">Hold down your Shift key</label>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="four" />
+        <label for="four">Check a lower item</label>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="five" />
+        <label for="five"
+          >Everything in between should also be set to checked</label
+        >
+      </div>
+      <div class="item">
+        <input type="checkbox" id="six" />
+        <label for="six">Try to do it without any libraries</label>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="seven" />
+        <label for="seven">Just regular JavaScript</label>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="eight" />
+        <label for="eight">Good Luck!</label>
+      </div>
+      <div class="item">
+        <input type="checkbox" id="nine" />
+        <label for="nine">Don't forget to tweet your result!</label>
+      </div>
+    </div>
+
+    <script>
+      let checkboxes = document.querySelectorAll(
+        '.inbox input[type = "checkbox"]'
+      );
+      let lastChecked;
+      function handleCheck(e) {
+        // check if the user select one and hold shift button to select another one
+        //  & the item is checked
+        let inBetween = false;
+        if (e.shiftKey && this.checked) {
+          checkboxes.forEach((checkbox) => {
+            console.log(checkbox);
+            // to hold what are in between the first checked and the last
+            if (checkbox === this || checkbox === lastChecked) {
+              // change the inbetween value into true
+              inBetween = !inBetween;
+              console.log(`Start checking the inbetween`);
+            }
+            if (inBetween) {
+              checkbox.checked = true;
+            }
+          });
+        }
+        lastChecked = this;
+      }
+
+      checkboxes.forEach((checkbox) =>
+        checkbox.addEventListener("click", handleCheck)
+      );
+    </script>
+  </body>
+</html>
